@@ -1,0 +1,70 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <filter>
+  	<filter-name>PrivateResource</filter-name>
+  	<display-name>PrivateResource</display-name>
+  	<description></description>
+  	<filter-class>it.polito.ai.es1.filters.PrivateResource</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>PrivateResource</filter-name>
+  	<url-pattern>/private/*</url-pattern>
+  </filter-mapping>
+  <listener>
+  	<listener-class>it.polito.ai.es1.listeners.SessionListener</listener-class>
+  </listener>
+  <servlet>
+  	<servlet-name>TicketServlet</servlet-name>
+  	<display-name>TicketServlet</display-name>
+  	<description></description>
+  	<servlet-class>it.polito.ai.es1.servlets.TicketServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ShoppingCartServlet</servlet-name>
+  	<display-name>ShoppingCartServlet</display-name>
+  	<description></description>
+  	<servlet-class>it.polito.ai.es1.servlets.ShoppingCartServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>LoginServlet</servlet-name>
+  	<display-name>LoginServlet</display-name>
+  	<description></description>
+  	<servlet-class>it.polito.ai.es1.servlets.LoginServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>OrderConfirmServlet</servlet-name>
+  	<display-name>OrderConfirmServlet</display-name>
+  	<description></description>
+  	<servlet-class>it.polito.ai.es1.servlets.OrderConfirmServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>HomeServlet</servlet-name>
+  	<display-name>HomeServlet</display-name>
+  	<description></description>
+  	<servlet-class>it.polito.ai.es1.servlets.HomeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>TicketServlet</servlet-name>
+  	<url-pattern>/TicketServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ShoppingCartServlet</servlet-name>
+  	<url-pattern>/ShoppingCartServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>LoginServlet</servlet-name>
+  	<url-pattern>/LoginServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>OrderConfirmServlet</servlet-name>
+  	<url-pattern>/private/OrderConfirmServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>HomeServlet</servlet-name>
+  	<url-pattern>/private/HomeServlet</url-pattern>
+  </servlet-mapping>
+</web-app>
