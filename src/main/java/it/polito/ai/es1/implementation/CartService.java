@@ -33,8 +33,11 @@ public class CartService implements CartServiceInterface {
 	}
 
 	public double getTotal() {
-		// TODO Auto-generated method stub
-		return 0;
+		double total = 0;
+		for(Item item : items.values()) {
+			total = total + (item.getTicket().getPrice() * item.getQty());
+		}
+		return total;
 	}
 
 	public boolean modifyItem(Ticket ticket, Integer qty) {
@@ -42,6 +45,10 @@ public class CartService implements CartServiceInterface {
 		i.setQty(qty);
 		items.put(ticket.getId(), i);
 		return false;
+	}
+	
+	public void clearCart() {
+		items.clear();
 	}
 
 }

@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import it.polito.ai.es1.implementation.CartService;
 import it.polito.ai.es1.interfaces.CartServiceInterface;
-import it.polito.ai.es1.models.Item;
 import it.polito.ai.es1.models.Ticket;
 
 /**
@@ -43,8 +42,6 @@ public class TicketServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("POST....................- "+request.getParameter("id")+" -........................."+request.getParameter("qty"));
-		
 		Map<String, Ticket> map = (HashMap<String, Ticket>)request.getServletContext().getAttribute("map");
 		id = request.getParameter("id");
 		
@@ -57,7 +54,6 @@ public class TicketServlet extends HttpServlet {
 		} catch (NumberFormatException e) {
 		    response.getWriter().append("La quantità deve essere un numero");
 		}
-		
 		
 		request.getRequestDispatcher("/tickets.jsp").forward(request, response);
 	}

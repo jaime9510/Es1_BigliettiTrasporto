@@ -40,10 +40,8 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("Login....................- "+request.getParameter("user")+" -........................."+request.getParameter("pass"));
 		username = request.getParameter("user");
 		password = request.getParameter("pass");
-		
 		loginService = (LoginService) request.getSession().getAttribute("loginService");
 		
 		if(loginService.login(username, password)) {
@@ -51,14 +49,15 @@ public class LoginServlet extends HttpServlet {
 			
 			String uri = (String)request.getSession().getAttribute("uri");
 			if (uri != null) {
-				request.getRequestDispatcher(uri).forward(request, response);
+				response.sendRedirect(uri);
+				//request.getRequestDispatcher(uri).forward(request, response);
 			} else {
 				request.getRequestDispatcher("/home.jsp").forward(request, response);
 			}
 			
 		} else {
-			response.getWriter().append("User / Password invalido. Prova di nuovo");
-			System.out.println("User / Password invalido. Prova di nuovo");
+//			response.getWriter().append("User / Password invalido. Prova di nuovo");
+			request.setAttribute("message", "User / Password invalido. Prova di nuovo");
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}
 		

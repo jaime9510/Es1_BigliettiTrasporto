@@ -19,14 +19,30 @@
 
     <div class="container">
 		<div class="header clearfix">
-			<!-- <nav class="navbar navbar-default navbar-fixed-top"> -->
 			<nav class="nav nav-pills pull-right">
 				<div class="container">
+					<%
+						String username = (String)request.getSession().getAttribute("user");
+						if (username == null) {
+					%>
 					<a type="button"
 						class="btn btn-default navbar-btn navbar-right" href="/Es1_BigliettiTrasporto/LoginServlet">
 						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 						Sign in
 					</a>
+					<% } else {
+					%>
+					<div class="dropdown navbar-btn navbar-right">
+						<button class="btn btn-default dropdown-toggle" type="button"
+							id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="true">
+							<%=username %> <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							<li><a href="/Es1_BigliettiTrasporto/private/HomeServlet">Log out</a></li>
+						</ul>
+					</div>
+					<% } %>
 					<%
 						CartService cartService = (CartService) request.getSession().getAttribute("cartService");
 					%>
@@ -34,6 +50,11 @@
 						class="btn btn-default navbar-btn navbar-right" href="/Es1_BigliettiTrasporto/ShoppingCartServlet">
 						<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
 						Carrello <span class="badge"><%= cartService.getItems().size() %></span>
+					</a>
+					<a type="button"
+						class="btn btn-default navbar-btn navbar-right" href="/Es1_BigliettiTrasporto/home.jsp">
+						<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+						Home
 					</a>
 				</div>
 			</nav>
@@ -60,6 +81,12 @@
 				</div>
 			</div>
 		</form>
+    	<%
+    		String message = (String)request.getAttribute("message");
+    		if (message != null) {
+    	%>
+		<div class="alert alert-danger"><%= message %></div>
+		<% } %>
 	</div>
 
 </body>

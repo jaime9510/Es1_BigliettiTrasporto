@@ -14,7 +14,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
-	<link href="jumbotron-narrow.css" rel="stylesheet">
 </head>
 
 <body>
@@ -53,13 +52,24 @@
 						<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
 						Carrello <span class="badge"><%= cartService.getItems().size() %></span>
 					</a>
+					<a type="button"
+						class="btn btn-default navbar-btn navbar-right" href="/Es1_BigliettiTrasporto/home.jsp">
+						<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+						Home
+					</a>
 				</div>
 			</nav>
 		</div>
+    	<%
+    		String message = (String)request.getAttribute("messageOrder");
+    		if (message != null) {
+    	%>
+		<div class="alert alert-success"><strong><%= message %></strong></div>
+		<% } %>
 		<div class="jumbotron">
 
 			<h1>Biglietti Trasporto Urbano</h1>
-			<p>...</p>
+			<p></p>
 			<p>
 				<a class="btn btn-primary btn-lg"
 					href="/Es1_BigliettiTrasporto/TicketServlet" role="button">Acquista

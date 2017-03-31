@@ -20,14 +20,4 @@ public class LoginService implements LoginServiceInterface {
 		return response;
 	}
 
-	public boolean logout(String username) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public String getUserName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

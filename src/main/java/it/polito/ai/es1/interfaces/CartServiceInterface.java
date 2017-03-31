@@ -17,5 +17,5 @@ public interface CartServiceInterface {
 	
 	public double getTotal();
 	
-	
+	public void clearCart();
 }

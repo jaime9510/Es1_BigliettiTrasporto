@@ -1,8 +1,6 @@
 package it.polito.ai.es1.listeners;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -15,8 +13,10 @@ import javax.servlet.http.HttpSessionListener;
 
 import it.polito.ai.es1.implementation.CartService;
 import it.polito.ai.es1.implementation.LoginService;
+import it.polito.ai.es1.implementation.PaymentService;
 import it.polito.ai.es1.interfaces.CartServiceInterface;
 import it.polito.ai.es1.interfaces.LoginServiceInterface;
+import it.polito.ai.es1.interfaces.PaymentServiceInterface;
 import it.polito.ai.es1.models.Ticket;
 
 /**
@@ -26,10 +26,10 @@ import it.polito.ai.es1.models.Ticket;
 @WebListener
 public class SessionListener implements ServletContextListener, HttpSessionListener {
 
-	public static List<Ticket> items = new ArrayList<Ticket>();
 	Map<String, Ticket> map = new HashMap<String, Ticket>();
 	public CartServiceInterface cartService;
 	public LoginServiceInterface loginService;
+	public PaymentServiceInterface paymentService;
 
 	private int numberOfSessions;
 
@@ -51,8 +51,10 @@ public class SessionListener implements ServletContextListener, HttpSessionListe
 		
 		cartService = new CartService();
 		loginService = new LoginService();
+		paymentService = new PaymentService();
 		session.setAttribute("cartService", cartService);
 		session.setAttribute("loginService", loginService);
+		session.setAttribute("paymentService", paymentService);
 		
 		synchronized (this) {
 			numberOfSessions++;
@@ -73,12 +75,6 @@ public class SessionListener implements ServletContextListener, HttpSessionListe
 		System.out.println("Servlet startup. . .");
 		System.out.println(arg0.getServletContext().getServerInfo());
 		System.out.println(System.currentTimeMillis());
-
-		items.add(new Ticket("Corsa singola urbana", "001", 1.50));
-		items.add(new Ticket("Corsa singola suburbana", "002", 1.80));
-		items.add(new Ticket("Biglietto giornaliero", "003", 4.90));
-		items.add(new Ticket("Abbonamento settimanale", "004", 12.0));
-		items.add(new Ticket("Abbonamento mensile", "005", 33.5));
 		
 		map.put("001", new Ticket("Corsa singola urbana", "001", 1.50));
 		map.put("002", new Ticket("Corsa singola suburbana", "002", 1.80));
@@ -87,7 +83,6 @@ public class SessionListener implements ServletContextListener, HttpSessionListe
 		map.put("005", new Ticket("Abbonamento mensile", "005", 33.5));
 
 		ServletContext servletContext = arg0.getServletContext();
-		servletContext.setAttribute("items", items);
 		servletContext.setAttribute("map", map);
 		
 	}

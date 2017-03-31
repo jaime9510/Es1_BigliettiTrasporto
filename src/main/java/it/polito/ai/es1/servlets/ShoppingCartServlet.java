@@ -43,8 +43,6 @@ public class ShoppingCartServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("Modify....................- "+request.getParameter("id")+" -........................."+request.getParameter("qty"));
-		
 		Map<String, Ticket> map = (HashMap<String, Ticket>)request.getServletContext().getAttribute("map");
 		id = request.getParameter("id");
 		String q = request.getParameter("qty");
@@ -61,8 +59,6 @@ public class ShoppingCartServlet extends HttpServlet {
 		} catch (NumberFormatException e) {
 		    response.getWriter().append("La quantità deve essere un numero");
 		}
-		
-		
 		request.getRequestDispatcher("/shoppingCart.jsp").forward(request, response);
 	}
 }

@@ -39,15 +39,10 @@ public class PrivateResource implements Filter {
 		if (request instanceof HttpServletRequest) {
 			HttpSession session = ((HttpServletRequest)request).getSession();
 			if (session.getAttribute("user")==null) {
-				System.out.println("Filtrado NOOOOOO logueado - "+((HttpServletRequest)request).getAttribute("javax.servlet.forward.request_uri"));
-				System.out.println("Alternativa - "+((HttpServletRequest)request).getRequestURI().substring(((HttpServletRequest)request).getContextPath().length()));
-				
-				String uri = ((HttpServletRequest)request).getRequestURI().substring(((HttpServletRequest)request).getContextPath().length());
+				String uri = ((HttpServletRequest)request).getRequestURI().toString();
 				session.setAttribute("uri", uri);
 				((HttpServletResponse)response).sendRedirect("/Es1_BigliettiTrasporto/LoginServlet");
 			} else {
-				System.out.println("Filtrado logueado");
-				// pass the request along the filter chain
 				chain.doFilter(request, response);
 			}
 		}
