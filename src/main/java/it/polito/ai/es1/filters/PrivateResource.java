@@ -21,14 +21,12 @@ public class PrivateResource implements Filter {
      * Default constructor. 
      */
     public PrivateResource() {
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see Filter#destroy()
 	 */
 	public void destroy() {
-		// TODO Auto-generated method stub
 	}
 
 	/**
